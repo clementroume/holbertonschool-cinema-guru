@@ -1,0 +1,152 @@
+/* ========================================= */
+/* INPUTS BASE                               */
+/* ========================================= */
+
+.input-wrapper, .select-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.input-wrapper label, .select-wrapper label {
+  font-weight: 400;
+  font-size: 0.85rem;
+  transition: color 0.3s ease;
+}
+
+.input-wrapper label {
+  color: #1C1C1C;
+}
+
+/* ========================================= */
+/* INPUT TEXT LIGHT                          */
+/* ========================================= */
+
+.input-container {
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #BB000E;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.input-container svg {
+  margin-right: 0.5rem;
+  color: rgba(0, 0, 0, 0.4);
+  transition: color 0.3s ease;
+}
+
+.input-container input {
+  border: none;
+  outline: none;
+  flex: 1;
+  background: transparent;
+  color: #1C1C1C;
+}
+
+.input-wrapper:focus-within .input-container {
+  border: 1px solid #E31C25;
+  border-radius: 4px;
+}
+.input-wrapper:focus-within label { color: #E31C25; }
+.input-wrapper:focus-within .input-container svg { color: #E31C25; }
+
+
+/* ========================================= */
+/* INPUT TEXT DARK                           */
+/* ========================================= */
+
+.input-wrapper.dark label { color: #FFFFFF; }
+.input-wrapper.dark .input-container { background-color: #2C2C2C; }
+.input-wrapper.dark .input-container svg { color: rgba(255, 255, 255, 0.4); }
+.input-wrapper.dark .input-container input { color: #FFFFFF; }
+
+
+/* ========================================= */
+/* SELECT INPUT                              */
+/* ========================================= */
+
+.select-wrapper label {
+  color: #FFFFFF;
+}
+
+.select-wrapper select {
+  background-color: #2C2C2C;
+  border: 1px solid transparent;
+  border-bottom: 1px solid #BB000E;
+  color: #FFFFFF;
+  padding: 0.6rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.select-wrapper select:focus {
+  border: 1px solid #E31C25;
+  border-radius: 4px;
+}
+.select-wrapper:focus-within label {
+  color: #E31C25;
+}
+
+/* ========================================= */
+/* BUTTONS                                   */
+/* ========================================= */
+
+.button-element {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  border: none;
+  background-color: #BB000E;
+  color: #FFFFFF;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.button-element svg {
+  color: #FFFFFF;
+}
+
+.button-element:hover{
+  background-color: #E31C25;
+}
+
+/* ========================================= */
+/* SEARCH BAR                                */
+/* ========================================= */
+
+.search-bar {
+  padding: 0.6rem 1.2rem;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.search-bar {
+  background-color: #FFFFFF;
+  color: rgba(44, 44, 44, 0.6);
+}
+.search-bar:hover,
+.search-bar:focus {
+  color: rgba(44, 44, 44, 1);
+}
+
+.search-bar.dark {
+  background-color: #2C2C2C;
+  color: rgba(255, 255, 255, 0.6);
+}
+.search-bar.dark:hover,
+.search-bar.dark:focus {
+  color: rgba(255, 255, 255, 1);
+}

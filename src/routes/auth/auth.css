@@ -1,0 +1,42 @@
+.authentication {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 450px;
+  margin: auto;
+  background-color: #FFFFFF;
+}
+
+.auth-buttons {
+  display: flex;
+  width: 100%;
+}
+
+.auth-buttons button {
+  flex: 1;
+  padding: 1rem 0;
+}
+
+.auth-buttons button.active {
+  background-color: #E31C25;
+}
+
+.auth-form {
+  padding: 2rem 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #1C1C1C;
+  font-size: 1.2rem;
+  font-weight: normal;
+}

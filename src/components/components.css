@@ -1,0 +1,16 @@
+.activity {
+  list-style: none;
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #FFFFFF; /* Forcer le texte de base en blanc */
+}
+
+.activity p {
+  margin: 0;
+  line-height: 1.4; /* Aère un peu le texte */
+}
+
+.activity span {
+  color: #E31C25; /* Username et Titre en rouge clair */
+  font-weight: bold;
+}

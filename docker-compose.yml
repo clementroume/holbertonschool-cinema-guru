@@ -1,0 +1,48 @@
+services:
+  frontend:
+    container_name: cinema-guru-frontend
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/app
+      - cinema-guru-frontend-modules:/app/node_modules
+    depends_on:
+      - node
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+  # Ton Backend (Node.js)
+  node:
+    container_name: cinema-guru-backend
+    restart: always
+    build: ./backend
+    environment:
+      DB_SCHEMA: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+    volumes:
+      - ./backend:/code
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # Ta Base de données (PostgreSQL)
+  postgres:
+    container_name: cinema-guru-postgres
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - cinema-guru-db:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  cinema-guru-db:
+  cinema-guru-frontend-modules:
