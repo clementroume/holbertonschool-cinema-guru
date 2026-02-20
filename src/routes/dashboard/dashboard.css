@@ -2,10 +2,42 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  overflow: hidden; /* Verrouille la fenêtre complète */
 }
 
 .dashboard-content {
   display: flex;
   flex: 1;
-  overflow: hidden;
+  overflow: hidden; /* Empêche le scroll sur la partie basse globale */
+}
+
+.page-content {
+  flex: 1; /* Prend tout l'espace à droite de la Sidebar */
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  overflow: hidden; /* Empêche la page entière de scroller */
+}
+
+/* On s'assure que les pages internes prennent toute la hauteur dispo */
+.home-page,
+.favorites-page,
+.watch-later-page {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden; /* Encore une fois, on bloque le scroll ici */
+}
+
+.favorites-page h1,
+.watch-later-page h1 {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: normal;
+  border-bottom: 4px solid #E31C25;
+  padding-bottom: 0.5rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+  width: fit-content;
+  align-self: center;
 }

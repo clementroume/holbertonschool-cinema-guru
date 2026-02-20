@@ -105,15 +105,21 @@
   display: none;
 }
 
+/* ========================================= */
+/* LATEST ACTIVITIES SECTION                 */
+/* ========================================= */
+
 .activities-section {
   background-color: #222222;
   color: #FFFFFF;
-  margin: 0 1rem;
+  margin: 0 1rem 1rem 1rem;
   padding: 1rem;
   border-radius: 8px;
   white-space: normal;
-  overflow-y: auto;
-  max-height: 40vh;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .activities-section h2 {
@@ -123,10 +129,14 @@
   color: #FFFFFF;
   border-bottom: 1px solid #333;
   padding-bottom: 0.5rem;
+  flex-shrink: 0;
 }
 
 .activities {
   list-style: none;
   padding: 0;
   margin: 0;
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
 }

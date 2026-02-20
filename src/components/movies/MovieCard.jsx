@@ -10,9 +10,7 @@ const MovieCard = ({ movie }) => {
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
-    const config = {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    };
+    const config = { headers: { Authorization: `Bearer ${accessToken}` } };
 
     axios.get('/api/titles/favorite/', config)
     .then((response) => {
@@ -35,9 +33,7 @@ const MovieCard = ({ movie }) => {
 
   const handleClick = (type) => {
     const accessToken = localStorage.getItem('accessToken');
-    const config = {
-      headers: { Authorization: `Bearer ${accessToken}` }
-    };
+    const config = { headers: { Authorization: `Bearer ${accessToken}` } };
 
     const isAdded = type === 'favorite' ? isFavorite : isWatchLater;
     const endpoint = type === 'favorite' ? 'favorite' : 'watchlater';
@@ -48,6 +44,8 @@ const MovieCard = ({ movie }) => {
       .then(() => {
         if (type === 'favorite') setIsFavorite(false);
         if (type === 'watchlater') setIsWatchLater(false);
+
+        window.dispatchEvent(new Event('activityUpdated'));
       })
       .catch((error) => console.error(`Error removing from ${type}:`, error));
     } else {
@@ -55,43 +53,36 @@ const MovieCard = ({ movie }) => {
       .then(() => {
         if (type === 'favorite') setIsFavorite(true);
         if (type === 'watchlater') setIsWatchLater(true);
+
+        window.dispatchEvent(new Event('activityUpdated'));
       })
       .catch((error) => console.error(`Error adding to ${type}:`, error));
     }
   };
 
-  // Image par défaut si le film n'a pas de poster
   const posterUrl = movie.imageurls && movie.imageurls.length > 0
       ? movie.imageurls[0]
       : 'https://via.placeholder.com/300x300?text=No+Image';
 
   return (
       <li className="movie-card">
-        {/* Partie Haute : Affiche de 300x300 */}
         <div className="movie-poster-container">
           <img src={posterUrl} alt={movie.title} className="movie-poster" />
 
-          {/* Icônes superposées en haut à droite */}
           <div className="movie-icons">
-            <FontAwesomeIcon
-                icon={faClock}
-                className={isWatchLater ? 'active' : ''}
-                onClick={() => handleClick('watchlater')}
-            />
-            <FontAwesomeIcon
-                icon={faStar}
-                className={isFavorite ? 'active' : ''}
-                onClick={() => handleClick('favorite')}
-            />
+            <span onClick={() => handleClick('watchlater')} style={{cursor: 'pointer'}}>
+              <FontAwesomeIcon icon={faClock} className={isWatchLater ? 'active' : ''} />
+            </span>
+            <span onClick={() => handleClick('favorite')} style={{cursor: 'pointer'}}>
+              <FontAwesomeIcon icon={faStar} className={isFavorite ? 'active' : ''} />
+            </span>
           </div>
 
-          {/* Bandeau superposé en bas de l'image */}
           <div className="movie-title-overlay">
             <h3>{movie.title}</h3>
           </div>
         </div>
 
-        {/* Partie Basse : Infos de 300x100 */}
         <div className="movie-info">
           <p className="movie-synopsis">{movie.synopsis}</p>
           <ul className="movie-card-tags">

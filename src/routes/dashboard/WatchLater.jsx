@@ -19,7 +19,7 @@ const WatchLater = () => {
 
   return (
       <div className="watch-later-page">
-        <h1>Movies you like</h1>
+        <h1>Movies to watch later</h1>
         <ul className="movies-list">
           {movies.map((movie) => (
               <MovieCard key={movie.imdbId || movie.id} movie={movie} />

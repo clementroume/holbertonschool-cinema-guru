@@ -30,14 +30,26 @@ const SideBar = () => {
     }
   }, [location.pathname]);
 
-  useEffect(() => {
+  const fetchActivities = () => {
     const accessToken = localStorage.getItem('accessToken');
     axios.get('/api/activity', {
       headers: { Authorization: `Bearer ${accessToken}` }
     })
-    .then((response) => setActivities(response.data))
+    .then((response) => {
+      if (Array.isArray(response.data)) setActivities(response.data);
+    })
     .catch((error) => console.error("Error fetching activities:", error));
-  }, []);
+  };
+
+  useEffect(() => {
+    fetchActivities(); // On charge les données initiales
+
+    window.addEventListener('activityUpdated', fetchActivities);
+
+    return () => {
+      window.removeEventListener('activityUpdated', fetchActivities);
+    };
+  }, [location.pathname]);
 
   return (
       <nav
@@ -63,7 +75,7 @@ const SideBar = () => {
             <div className="activities-section">
               <h2>Latest Activities</h2>
               <ul className="activities">
-                {activities.slice(0, 10).map((activity) => (
+                {activities?.slice(0, 10).map((activity) => (
                     <Activity key={activity.id} activity={activity} />
                 ))}
               </ul>

@@ -6,9 +6,9 @@ import Tag from './Tag';
 import './movies.css';
 
 const tagsList = [
-  "action", "drama", "comedy", "biography", "romance",
-  "thriller", "war", "history", "sport", "sci-fi",
-  "documentary", "crime", "fantasy"
+  "action", "adventure", "animation", "comedy", "crime",
+  "documentary", "drama", "family", "fantasy", "horror",
+  "mystery", "romance", "sci-fi", "sport", "thriller", "war"
 ];
 
 const Filter = ({ minYear, setMinYear, maxYear, setMaxYear, sort, setSort, genres, setGenres, title, setTitle }) => {
@@ -16,41 +16,52 @@ const Filter = ({ minYear, setMinYear, maxYear, setMaxYear, sort, setSort, genre
 
   return (
       <div className="filter-container">
-        <SearchBar title={title} setTitle={setTitle} />
 
-        <div className="year-inputs">
-          <Input
-              label="Min Year:"
-              type="number"
-              value={minYear}
-              setValue={setMinYear}
+        <div className="filter-left">
+          <SearchBar
+              className="dark"
+              title={title}
+              setTitle={setTitle}
           />
-          <Input
-              label="Max Year:"
-              type="number"
-              value={maxYear}
-              setValue={setMaxYear}
-          />
+
+          <div className="filter-inputs">
+            <Input
+                className="dark"
+                label="Min Date:"
+                type="number"
+                value={minYear}
+                setValue={setMinYear}
+            />
+            <Input
+                className="dark"
+                label="Max Date:"
+                type="number"
+                value={maxYear}
+                setValue={setMaxYear}
+            />
+            <SelectInput
+                className="dark" /* Pour qu'il ait aussi le style sombre */
+                label="Sort:"
+                options={sortOptions}
+                value={sort}
+                setValue={setSort}
+            />
+          </div>
         </div>
 
-        <SelectInput
-            label="Sort By:"
-            options={sortOptions}
-            value={sort}
-            setValue={setSort}
-        />
-
-        <ul className="tags-list">
-          {tagsList.map((tag) => (
-              <Tag
-                  key={tag}
-                  genre={tag}
-                  filter={true}
-                  genres={genres}
-                  setGenres={setGenres}
-              />
-          ))}
-        </ul>
+        <div className="filter-right">
+          <ul className="tags-list">
+            {tagsList.map((tag) => (
+                <Tag
+                    key={tag}
+                    genre={tag}
+                    filter={true}
+                    genres={genres}
+                    setGenres={setGenres}
+                />
+            ))}
+          </ul>
+        </div>
       </div>
   );
 };
